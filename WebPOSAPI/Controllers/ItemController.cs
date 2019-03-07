@@ -71,19 +71,19 @@ namespace WebPOSAPI.Controllers
         }
 
         // POST: api/Item
-        [ResponseType(typeof(Item))]
-        public IHttpActionResult PostItem(Item item)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[ResponseType(typeof(Item))]
+        //public IHttpActionResult PostItem(Item item)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Items.Add(item);
-            db.SaveChanges();
+        //    db.Items.Add(item);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = item.ItemID }, item);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = item.ItemID }, item);
+        //}
 
         // DELETE: api/Item/5
         [ResponseType(typeof(Item))]

@@ -36,6 +36,7 @@ namespace WebPOSAPI.Controllers
 
         // GET: api/Order/5
         [ResponseType(typeof(Order))]
+        [Authorize]
         public IHttpActionResult GetOrder(long id)
         {
             var order = (from a in db.Orders
@@ -108,10 +109,21 @@ namespace WebPOSAPI.Controllers
 
         // POST: api/Order
         [ResponseType(typeof(Order))]
-        public IHttpActionResult PostOrder(Order order)
+        [Authorize]
+        public IHttpActionResult PostOrder(ViewModels.OrderViewModel orderView)
         {
             try
             {
+                Order order = new Order
+                {
+                    CustomerID = orderView.CustomerID,
+                    GTotal = orderView.GTotal,
+                    OrderID = orderView.OrderID,
+                    OrderItems = orderView.OrderItems,
+                    PMethod = orderView.PMethod,
+                    OrderNo = orderView.OrderNo
+                };
+
                 //order table insert
                 if (order.OrderID == 0)
                     db.Orders.Add(order);
@@ -130,7 +142,7 @@ namespace WebPOSAPI.Controllers
                 }
                 
                 //Delete OrderItems
-                foreach(var id in order.DeletedOrderItemIDs.Split(',').Where(item => item != ""))
+                foreach(var id in orderView.DeletedOrderItemIDs.Split(',').Where(item => item != ""))
                 {
                     OrderItem x = db.OrderItems.Find(Convert.ToInt64(id));
                     db.OrderItems.Remove(x);
@@ -151,6 +163,7 @@ namespace WebPOSAPI.Controllers
 
         // DELETE: api/Order/5
         [ResponseType(typeof(Order))]
+        [Authorize]
         public IHttpActionResult DeleteOrder(long id)
         {
             Order order = db.Orders.Include(y=> y.OrderItems).SingleOrDefault(x => x.OrderID == id);

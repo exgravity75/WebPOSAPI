@@ -13,6 +13,13 @@
         <AssociationConnector Association="WebPOSDBModel.FK_OrderItems_Item" ManuallyRouted="false" />
         <AssociationConnector Association="WebPOSDBModel.FK_Order_Order" ManuallyRouted="false" />
         <AssociationConnector Association="WebPOSDBModel.FK_OrderItems_Order" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WebPOSDBModel.AspNetRole" Width="1.5" PointX="5.375" PointY="9.625" />
+        <EntityTypeShape EntityType="WebPOSDBModel.AspNetUserClaim" Width="1.5" PointX="9.875" PointY="8.125" />
+        <EntityTypeShape EntityType="WebPOSDBModel.AspNetUserLogin" Width="1.5" PointX="9.875" PointY="10.875" />
+        <EntityTypeShape EntityType="WebPOSDBModel.AspNetUser" Width="1.5" PointX="7.625" PointY="8" />
+        <AssociationConnector Association="WebPOSDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="WebPOSDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="WebPOSDBModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
